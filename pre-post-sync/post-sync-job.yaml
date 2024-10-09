@@ -9,8 +9,20 @@ spec:
   template:
     spec:
       containers:
-      - name: sleep
-        image: alpine:latest
-        command: ["sleep", "10"]
+      - name: test-post
+        image: curlimages/curl
+        command:
+          - "curl"
+          - "-X"
+          - "POST"
+          - "--data-urlencode"
+          - |
+            payload={
+              "channel": "#somechannel",
+              "username": "hello",
+              "text": "App Sync succeeded",
+              "icon_emoji": ":ghost:"
+            }
+          - "https://webhook-test.com/3eb648b21415c35a13f142c58048a874"
       restartPolicy: Never
-  backoffLimit: 0
+  backoffLimit: 2
