@@ -15,13 +15,16 @@ spec:
           - "curl"
           - "-X"
           - "POST"
-          - "--data-urlencode"
+          - "-H"
+          - "Accept: application/vnd.github.v3+json"
+          - "-H"
+          - "Authorization: token test_value"
+          - "-d"
           - |
-            payload={
-              "channel": "#somechannel",
-              "username": "hello",
-              "text": "App Sync succeeded",
-              "icon_emoji": ":ghost:"
+            {
+              "name": "test",
+              "namespace": "argocd",
+              "slackchannel": "testing"
             }
           - "https://webhook-test.com/3eb648b21415c35a13f142c58048a874"
       restartPolicy: Never
